@@ -1,0 +1,27 @@
+<script>
+import { computed } from "vue";
+export default {
+  data() {
+    return {
+      activeTab: "tab1",
+    };
+  },
+  provide() {
+    return {
+      activeTabProvided: computed(() => this.activeTab),
+      setActiveTab: this.setActiveTab,
+    };
+  },
+  methods: {
+    setActiveTab(tabId) {
+      this.activeTab = tabId;
+    },
+  },
+};
+</script>
+
+<template>
+  <div>
+    <slot></slot>
+  </div>
+</template>
