@@ -22,6 +22,6 @@ export default {
 
 <template>
   <div>
-    <slot></slot>
+    <wwLayout path="slot" />
   </div>
 </template>

@@ -12,5 +12,12 @@ export default {
       type: "Color",
       defaultValue: "#F23636",
     },
+    slot: {
+      hidden: true,
+      defaultValue: [],
+      navigator: {
+        group: "Dropdown",
+      },
+    },
   },
 };
