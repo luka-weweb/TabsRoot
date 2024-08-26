@@ -6,13 +6,6 @@ export default {
     icon: "view-grid",
   },
   properties: {
-    textColor: {
-      label: {
-        en: "Text color",
-      },
-      type: "Color",
-      defaultValue: "#F23636",
-    },
     default: {
       label: {
         en: "Default value",
@@ -32,6 +25,19 @@ export default {
       },
       bindable: true,
       defaultValue: "horizontal",
+    },
+    controlled: {
+      label: "Controlled",
+      type: "OnOff",
+      bindable: true,
+      defaultValue: true,
+    },
+    modelValue: {
+      label: "Value",
+      type: "Text",
+      bindable: true,
+      defaultValue: "",
+      hidden: (content) => content.controlled,
     },
     slot: {
       hidden: true,
