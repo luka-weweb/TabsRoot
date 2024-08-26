@@ -28,18 +28,22 @@ export default {
       this.tabTriggers.push({ id: tabId, element });
     },
     handleKeyDown(event) {
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      const isVertical = this.content.orientation === "vertical";
+      const prevKey = isVertical ? "ArrowUp" : "ArrowLeft";
+      const nextKey = isVertical ? "ArrowDown" : "ArrowRight";
+
+      if (event.key === prevKey || event.key === nextKey) {
         const currentIndex = this.tabTriggers.findIndex(
           (tab) => tab.id === this.activeTab
         );
         let newIndex;
 
-        if (event.key === "ArrowLeft") {
+        if (event.key === prevKey) {
           newIndex =
-            (currentIndex - 1 + this.tabTriggers.length) %
-            this.tabTriggers.length;
+            currentIndex > 0 ? currentIndex - 1 : this.tabTriggers.length - 1;
         } else {
-          newIndex = (currentIndex + 1) % this.tabTriggers.length;
+          newIndex =
+            currentIndex < this.tabTriggers.length - 1 ? currentIndex + 1 : 0;
         }
 
         this.setActiveTab(this.tabTriggers[newIndex].id);

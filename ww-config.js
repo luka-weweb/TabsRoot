@@ -21,6 +21,18 @@ export default {
       bindable: true,
       defaultValue: "",
     },
+    orientation: {
+      label: "Orientation",
+      type: "TextSelect",
+      options: {
+        options: [
+          { label: "Vertical", value: "vertical", default: true },
+          { label: "Horizontal", value: "horizontal" },
+        ],
+      },
+      bindable: true,
+      defaultValue: "horizontal",
+    },
     slot: {
       hidden: true,
       defaultValue: [],
