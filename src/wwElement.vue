@@ -17,6 +17,9 @@ export default {
       this.activeTab = tabId;
     },
   },
+  mounted() {
+    this.activeTab = this.content.defaultValue;
+  },
 };
 </script>
 

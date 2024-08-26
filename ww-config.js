@@ -3,6 +3,7 @@ export default {
     label: {
       en: "My Element",
     },
+    icon: "view-grid",
   },
   properties: {
     textColor: {
@@ -11,6 +12,14 @@ export default {
       },
       type: "Color",
       defaultValue: "#F23636",
+    },
+    defaultValue: {
+      label: {
+        en: "Default value",
+      },
+      type: "Text",
+      bindable: true,
+      defaultValue: "",
     },
     slot: {
       hidden: true,
