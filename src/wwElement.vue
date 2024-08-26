@@ -1,5 +1,6 @@
 <script>
 import { computed } from "vue";
+
 export default {
   props: {
     content: { type: Object, required: true },
@@ -8,22 +9,49 @@ export default {
   },
   data() {
     return {
-      activeTab: "tab1",
+      activeTab: this.content.default,
+      tabTriggers: [],
     };
   },
   provide() {
     return {
       activeTabProvided: computed(() => this.activeTab),
       setActiveTab: this.setActiveTab,
+      registerTabTrigger: this.registerTabTrigger,
     };
   },
   methods: {
     setActiveTab(tabId) {
       this.activeTab = tabId;
     },
+    registerTabTrigger(tabId, element) {
+      this.tabTriggers.push({ id: tabId, element });
+    },
+    handleKeyDown(event) {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        const currentIndex = this.tabTriggers.findIndex(
+          (tab) => tab.id === this.activeTab
+        );
+        let newIndex;
+
+        if (event.key === "ArrowLeft") {
+          newIndex =
+            (currentIndex - 1 + this.tabTriggers.length) %
+            this.tabTriggers.length;
+        } else {
+          newIndex = (currentIndex + 1) % this.tabTriggers.length;
+        }
+
+        this.setActiveTab(this.tabTriggers[newIndex].id);
+        this.tabTriggers[newIndex].element.focus();
+      }
+    },
   },
   mounted() {
-    this.activeTab = this.content.default;
+    window.addEventListener("keydown", this.handleKeyDown);
+  },
+  beforeUnmount() {
+    window.removeEventListener("keydown", this.handleKeyDown);
   },
 };
 </script>
