@@ -9,11 +9,22 @@ export default {
   },
   data() {
     return {
-      activeTab: this.content.controlled
-        ? this.content.default
-        : this.content.modelValue,
       tabTriggers: [],
     };
+  },
+  computed: {
+    activeTab: {
+      get() {
+        return this.content.controlled
+          ? this.content.default
+          : this.content.modelValue;
+      },
+      set(newValue) {
+        if (!this.content.controlled) {
+          this.$emit("update:modelValue", newValue);
+        }
+      },
+    },
   },
   provide() {
     return {
@@ -24,9 +35,6 @@ export default {
   },
   methods: {
     setActiveTab(tabId) {
-      if (!this.content.controlled) {
-        this.$emit("update:modelValue", tabId);
-      }
       this.activeTab = tabId;
     },
     registerTabTrigger(tabId, element) {
