@@ -13,7 +13,7 @@ export default {
       type: "Color",
       defaultValue: "#F23636",
     },
-    defaultValue: {
+    default: {
       label: {
         en: "Default value",
       },
