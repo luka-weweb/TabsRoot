@@ -1,6 +1,11 @@
 <script>
 import { computed } from "vue";
 export default {
+  props: {
+    content: { type: Object, required: true },
+    wwFrontState: { type: Object, required: true },
+    wwEditorState: { type: Object, required: true },
+  },
   data() {
     return {
       activeTab: "tab1",
