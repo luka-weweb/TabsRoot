@@ -4,6 +4,14 @@ export default {
       en: "My Element",
     },
     icon: "view-grid",
+    triggerEvents: [
+      {
+        name: "change",
+        label: { en: "On change" },
+        event: { value: "" },
+        default: true,
+      },
+    ],
   },
   properties: {
     default: {
@@ -27,7 +35,7 @@ export default {
       defaultValue: "horizontal",
     },
     controlled: {
-      label: "Controlled",
+      label: "Manual control",
       type: "OnOff",
       bindable: true,
       defaultValue: true,
