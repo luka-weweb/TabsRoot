@@ -4,15 +4,15 @@ export default {
       en: "My Element",
     },
     icon: "view-grid",
-    triggerEvents: [
-      {
-        name: "change",
-        label: { en: "On change" },
-        event: { value: "" },
-        default: true,
-      },
-    ],
   },
+  triggerEvents: [
+    {
+      name: "change",
+      label: { en: "On change" },
+      event: { value: "" },
+      default: true,
+    },
+  ],
   properties: {
     default: {
       label: {
@@ -45,7 +45,7 @@ export default {
       type: "Text",
       bindable: true,
       defaultValue: "",
-      hidden: (content) => content.controlled,
+      hidden: (content) => !content.controlled,
     },
     slot: {
       hidden: true,
