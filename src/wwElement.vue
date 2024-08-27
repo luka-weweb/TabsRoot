@@ -1,4 +1,6 @@
 <script>
+import { computed } from "vue";
+
 export default {
   props: {
     content: { type: Object, required: true },
