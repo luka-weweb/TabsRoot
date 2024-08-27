@@ -1,6 +1,4 @@
 <script>
-import { computed } from "vue";
-
 export default {
   props: {
     content: { type: Object, required: true },
@@ -35,16 +33,9 @@ export default {
       },
     },
   },
-  provide() {
-    return {
-      activeTabProvided: computed(() => this.computedActiveTab),
-      setActiveTab: this.setActiveTab,
-      registerTabTrigger: this.registerTabTrigger,
-    };
-  },
   methods: {
     setActiveTab(tabId) {
-      this.internalActiveTab = tabId;
+      this.computedActiveTab = tabId;
     },
     registerTabTrigger(tabId, element) {
       this.tabTriggers.push({ id: tabId, element });
@@ -56,27 +47,30 @@ export default {
 
       if (event.key === prevKey || event.key === nextKey) {
         const currentIndex = this.tabTriggers.findIndex(
-          (tab) => tab.id === this.internalActiveTab
+          (tab) => tab.id === this.computedActiveTab
         );
-        let newIndex;
-
-        if (event.key === prevKey) {
-          newIndex =
-            currentIndex > 0 ? currentIndex - 1 : this.tabTriggers.length - 1;
-        } else {
-          newIndex =
-            currentIndex < this.tabTriggers.length - 1 ? currentIndex + 1 : 0;
-        }
+        const newIndex =
+          event.key === prevKey
+            ? (currentIndex - 1 + this.tabTriggers.length) %
+              this.tabTriggers.length
+            : (currentIndex + 1) % this.tabTriggers.length;
 
         this.setActiveTab(this.tabTriggers[newIndex].id);
         this.tabTriggers[newIndex].element.focus();
       }
     },
   },
+  provide() {
+    return {
+      activeTabProvided: () => this.computedActiveTab,
+      setActiveTab: this.setActiveTab,
+      registerTabTrigger: this.registerTabTrigger,
+    };
+  },
   mounted() {
     window.addEventListener("keydown", this.handleKeyDown);
   },
-  beforeUnmount() {
+  unmounted() {
     window.removeEventListener("keydown", this.handleKeyDown);
   },
 };
