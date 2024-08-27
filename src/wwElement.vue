@@ -37,7 +37,7 @@ export default {
   },
   provide() {
     return {
-      activeTabProvided: computed(() => this.internalActiveTab),
+      activeTabProvided: computedActiveTab,
       setActiveTab: this.setActiveTab,
       registerTabTrigger: this.registerTabTrigger,
     };
