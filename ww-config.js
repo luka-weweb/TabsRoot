@@ -5,6 +5,10 @@ export default {
     },
     icon: "view-grid",
   },
+  options: {
+    autoByContent: true,
+    layout: ["flex", "grid"],
+  },
   triggerEvents: [
     {
       name: "change",
@@ -31,12 +35,18 @@ export default {
           { label: "Horizontal", value: "horizontal" },
         ],
       },
+      propertyHelp: {
+        tooltip: `If set to vertical, up and down arrow keys will toggle through options and left and right for horizontal.`,
+      },
       bindable: true,
       defaultValue: "horizontal",
     },
     controlled: {
       label: "Manual control",
       type: "OnOff",
+      propertyHelp: {
+        tooltip: `If`,
+      },
       bindable: true,
       defaultValue: true,
     },
