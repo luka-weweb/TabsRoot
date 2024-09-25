@@ -1,7 +1,7 @@
 export default {
   editor: {
     label: {
-      en: "My Element",
+      en: "Tabs",
     },
     icon: "view-grid",
   },
