@@ -67,6 +67,7 @@ export default {
       activeTabProvided: computed(() => this.computedActiveTab),
       setActiveTab: this.setActiveTab,
       registerTabTrigger: this.registerTabTrigger,
+      activationMode: this.content.activation,
     };
   },
   mounted() {

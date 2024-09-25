@@ -44,6 +44,21 @@ export default {
       bindable: true,
       defaultValue: "horizontal",
     },
+    activation: {
+      label: "Appearance",
+      type: "TextSelect",
+      options: {
+        options: [
+          { label: "Automatic", value: "auto", default: true },
+          { label: "Manual", value: "manual" },
+        ],
+      },
+      propertyHelp: {
+        tooltip: `If this is On, the trigger will activate when receiving focus.`,
+      },
+      bindable: true,
+      defaultValue: "",
+    },
     controlled: {
       label: "Manual control",
       type: "OnOff",
