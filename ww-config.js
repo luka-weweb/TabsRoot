@@ -5,9 +5,12 @@ export default {
     },
     icon: "view-grid",
   },
+  inherit: {
+    type: "ww-layout",
+  },
   options: {
     autoByContent: true,
-    layout: ["flex", "grid"],
+    displayAllowedValues: ["flex", "grid"],
   },
   triggerEvents: [
     {
